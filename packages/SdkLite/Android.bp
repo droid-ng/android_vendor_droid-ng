@@ -1,0 +1,13 @@
+android_library {
+    name: "org.eu.droid_ng.platform",
+    defaults: ["platform_app_defaults", "SettingsLibDefaults"],
+    platform_apis: true,
+    srcs: [
+        "src/**/*.java",
+        "src/**/*.aidl",
+        "src/**/*.kt",
+    ],
+    resource_dirs: [
+        "res",
+    ],
+}

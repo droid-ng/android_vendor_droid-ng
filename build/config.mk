@@ -1,5 +1,9 @@
 # Extra stuff for config.mk goes here
 
+# used by SdkLite library
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.ng.build.version.plat.sdk=1
+
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     vendor/droid-ng/build/security/ng
 
@@ -19,3 +23,6 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/droid-ng/overlay/wallpapers_1440p
 else
 PRODUCT_PACKAGE_OVERLAYS += vendor/droid-ng/overlay/wallpapers_1080p
 endif
+
+PRODUCT_PACKAGES += \
+    NgParts

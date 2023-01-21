@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ngparts_title">droid-ng-Einstellungen</string>
+    <string name="loading">Laden…</string>
+    <string name="dlg_ok">OK</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="add">Hinzufügen</string>
+    <string name="choose_app">App auswählen</string>
+    <string name="reset">Zurücksetzen</string>
+    <string name="advanced">Erweitert</string>
+    <string name="settings">Einstellungen</string>
+    <string name="name">Name</string>
+    <string name="back">Zurück</string>
+    <string name="finish">Fertig</string>
+    <string name="next">Weiter</string>
+    <string name="on">An</string>
+    <string name="off">Aus</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="search">Suche</string>
+    <string name="disabled">Deaktiviert</string>
+    <string name="enabled">Aktiviert</string>
+    <string name="ng_dashboard_title">droid-ng</string>
+    <string name="ng_dashboard_summary">All unsere Extras an einem Ort</string>
+    <string name="power_menu_type_legacy">Android 7</string>
+    <string name="power_menu_type_grid">Raster</string>
+    <string name="power_menu_type_lite">Android 12</string>
+    <string name="power_menu_type_full">Android 11</string>
+    <string name="power_menu_type_classic">Android 8</string>
+    <string name="power_menu_type_title">Ein/Aus-Menü-Stil</string>
+</resources>
