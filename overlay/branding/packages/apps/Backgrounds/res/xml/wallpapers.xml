@@ -1,0 +1,143 @@
+<!--
+    Copyright (C) 2022 Project Materium
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+        http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<resources>
+	<category id="LogoWalls2" title="@string/category_logo2" featured="default_wallpaper2">
+		<static-wallpaper
+        	    id="default_wallpaper2"
+        	    src="@drawable/default_wallpaper"
+        	    title="@string/wallpaper_default"
+        	    subtitle1="@string/author_qirkl" />
+	</category>
+	<category id="LogoWalls" title="@string/category_logo" featured="logo">
+		<static-wallpaper
+        	    id="logo"
+        	    src="@drawable/logo"
+        	    title="@string/wallpaper_logo"
+        	    subtitle1="@string/author_qirkl" />
+		<static-wallpaper
+        	    id="internal"
+        	    src="@drawable/internal"
+        	    title="@string/wallpaper_internal"
+        	    subtitle1="@string/author_qirkl" />
+		<static-wallpaper
+        	    id="usif0"
+        	    src="@drawable/usif0"
+        	    title="@string/wallpaper_usif0"
+        	    subtitle1="@string/author_usif" />
+		<static-wallpaper
+        	    id="usif1"
+        	    src="@drawable/usif1"
+        	    title="@string/wallpaper_usif1"
+        	    subtitle1="@string/author_usif" />
+		<static-wallpaper
+        	    id="usif2"
+        	    src="@drawable/usif2"
+        	    title="@string/wallpaper_usif2"
+        	    subtitle1="@string/author_usif" />
+		<static-wallpaper
+        	    id="usif3"
+        	    src="@drawable/usif3"
+        	    title="@string/wallpaper_usif3"
+        	    subtitle1="@string/author_usif" />
+	</category>
+	<category id="MaterialYou" title="@string/category_mdyou" featured="mdyou0">
+		<static-wallpaper
+        	    id="mdyou0"
+        	    src="@drawable/mdyou0"
+        	    title="@string/wallpaper_mdyou0"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="mdyou1"
+        	    src="@drawable/mdyou1"
+        	    title="@string/wallpaper_mdyou1"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="mdyou2"
+        	    src="@drawable/mdyou2"
+        	    title="@string/wallpaper_mdyou2"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="mdyou3"
+        	    src="@drawable/mdyou3"
+        	    title="@string/wallpaper_mdyou3"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="mdyou4"
+        	    src="@drawable/mdyou4"
+        	    title="@string/wallpaper_mdyou4"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="mdyou5"
+        	    src="@drawable/mdyou5"
+        	    title="@string/wallpaper_mdyou5"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="mdyou6"
+        	    src="@drawable/mdyou6"
+        	    title="@string/wallpaper_mdyou6"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="mdyou7"
+        	    src="@drawable/mdyou7"
+        	    title="@string/wallpaper_mdyou7"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="mdyou8"
+        	    src="@drawable/mdyou8"
+        	    title="@string/wallpaper_mdyou8"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="mdyou9"
+        	    src="@drawable/mdyou9"
+        	    title="@string/wallpaper_mdyou9"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="mdyou10"
+        	    src="@drawable/mdyou10"
+        	    title="@string/wallpaper_mdyou10"
+        	    subtitle1="@string/author_megh" />
+	</category>
+	<category id="Stellar" title="@string/category_stellar" featured="stellar0">
+		<static-wallpaper
+        	    id="stellar0"
+        	    src="@drawable/stellar0"
+        	    title="@string/wallpaper_stellar0"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="stellar1"
+        	    src="@drawable/stellar1"
+        	    title="@string/wallpaper_stellar1"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="stellar2"
+        	    src="@drawable/stellar2"
+        	    title="@string/wallpaper_stellar2"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="stellar3"
+        	    src="@drawable/stellar3"
+        	    title="@string/wallpaper_stellar3"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="stellar4"
+        	    src="@drawable/stellar4"
+        	    title="@string/wallpaper_stellar4"
+        	    subtitle1="@string/author_megh" />
+		<static-wallpaper
+        	    id="stellar5"
+        	    src="@drawable/stellar5"
+        	    title="@string/wallpaper_stellar5"
+        	    subtitle1="@string/author_megh" />
+	</category>
+</resources>
