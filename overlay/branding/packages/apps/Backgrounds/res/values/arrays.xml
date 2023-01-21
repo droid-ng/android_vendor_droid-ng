@@ -16,6 +16,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <array name="wallpapers" translatable="false">
+        <item>lmo1</item>
         <item>ahmed_flower</item>
         <item>artiom_flower</item>
         <item>clarisse_sky</item>
