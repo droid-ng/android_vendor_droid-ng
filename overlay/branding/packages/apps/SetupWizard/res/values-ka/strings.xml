@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">droid-ng-ს შესაძლებლობები</string>
+    <string name="update_recovery_title">droid-ng-აღმდგენის განახლება</string>
+    <string name="update_recovery_description">განაახლებს droid-ng-აღმდგენს პირველი ჩატვირთვისას, ყოველი განახლების შემდგომ.</string>
+    <string name="update_recovery_setting">განახლდეს droid-ng-აღმდგენი სისტემასთან ერთად</string>
+</resources>

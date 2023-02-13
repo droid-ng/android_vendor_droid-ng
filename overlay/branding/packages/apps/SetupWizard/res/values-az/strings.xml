@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">droid-ng özəllikləri</string>
+    <string name="update_recovery_title">droid-ng Bərpa Rejimini Yenilə</string>
+    <string name="update_recovery_description">Hər yeniləmədən sonrakı ilk açılışda droid-ng Bərpa rejimini yeniləyər.</string>
+    <string name="update_recovery_setting">ƏS ilə birgə droid-ng Bərpa rejimini də yeniləyin</string>
+</resources>

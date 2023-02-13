@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">Značilnosti droid-ng</string>
+    <string name="update_recovery_title">Posodobi obnovitev droid-ng</string>
+    <string name="update_recovery_description">Posodobi obnovitev droid-ng ob prvem zagonu vsake posodobitve.</string>
+    <string name="update_recovery_setting">Posodobi obnovitev droid-ng poleg OS-a</string>
+</resources>

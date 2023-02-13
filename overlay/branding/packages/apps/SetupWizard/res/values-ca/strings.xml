@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">Característiques de droid-ng</string>
+    <string name="update_recovery_title">Actualització del recuperador del droid-ng</string>
+    <string name="update_recovery_description">Actualitza el recuperador del droid-ng en el primer inici posterior a cada actualització.</string>
+    <string name="update_recovery_setting">Actualitza el recuperador del droid-ng juntament amb el sistema operatiu</string>
+</resources>

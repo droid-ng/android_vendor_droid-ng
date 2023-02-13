@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">droid-ng újítások</string>
+    <string name="update_recovery_title">A droid-ng Recovery frissítése</string>
+    <string name="update_recovery_description">Frissíti a droid-ng Recovery-t minden frissítés utáni első indításkor.</string>
+    <string name="update_recovery_setting">A droid-ng Recovery frissítése az operációs rendszer mellett</string>
+</resources>

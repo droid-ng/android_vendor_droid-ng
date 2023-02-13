@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">Χαρακτηριστικά droid-ng</string>
+    <string name="update_recovery_title">Ενημέρωση droid-ng Recovery</string>
+    <string name="update_recovery_description">Ενημέρωση της droid-ng Recovery στην πρώτη εκκίνηση μετά από κάθε ενημέρωση.</string>
+    <string name="update_recovery_setting">Ενημέρωση droid-ng Recovery παράλληλα με το λειτουργικό σύστημα</string>
+</resources>

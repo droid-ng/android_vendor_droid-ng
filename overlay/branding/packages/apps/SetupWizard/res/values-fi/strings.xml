@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">droid-ng-ominaisuudet</string>
+    <string name="update_recovery_title">Päivitä droid-ng Recovery</string>
+    <string name="update_recovery_description">Päivittää droid-ng Recoveryn jokaisen päivityksen jälkeen ensimmäisellä käynnistyskerralla</string>
+    <string name="update_recovery_setting">Päivitä droid-ng Recovery käyttöjärjestelmän rinnalla</string>
+</resources>

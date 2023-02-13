@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">Nodweddion droid-ng</string>
+    <string name="update_recovery_title">Diweddaru Modd Adfer droid-ng </string>
+    <string name="update_recovery_description">Yn diweddaru Adfer droid-ng wrth y cychwyn cyntaf wedi pob diweddariad</string>
+    <string name="update_recovery_setting">Diweddara Adfer droid-ng cohr yn ochr â\'r OS</string>
+</resources>

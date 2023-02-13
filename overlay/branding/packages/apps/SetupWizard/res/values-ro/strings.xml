@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">Caracteristici droid-ng</string>
+    <string name="update_recovery_title">Actualizează droid-ng Recovery</string>
+    <string name="update_recovery_description">Actualizează droid-ng Recovery la prima pornire după fiecare actualizare.</string>
+    <string name="update_recovery_setting">Actualizați droid-ng Recovery alături de OS</string>
+</resources>

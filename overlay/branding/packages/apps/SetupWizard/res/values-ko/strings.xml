@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">droid-ng 기능</string>
+    <string name="update_recovery_title">droid-ng 복구 모드 업데이트</string>
+    <string name="update_recovery_description">매 업데이트 적용 후 첫 부팅 시 droid-ng 복구 모드를 업데이트합니다.</string>
+    <string name="update_recovery_setting">OS와 함께 droid-ng 복구 모드 업데이트</string>
+</resources>

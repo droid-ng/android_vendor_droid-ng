@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">droid-ng の機能</string>
+    <string name="update_recovery_title">droid-ng Recovery をアップデート</string>
+    <string name="update_recovery_description">毎回のアップデートの最初の起動時に droid-ng Recovery をアップデートします</string>
+    <string name="update_recovery_setting">OS と一緒に droid-ng Recovery をアップデートする</string>
+</resources>

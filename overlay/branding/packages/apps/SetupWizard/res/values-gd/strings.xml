@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">Gleusan droid-ng</string>
+    <string name="update_recovery_title">Ùraich aiseag droid-ng</string>
+    <string name="update_recovery_description">Ùraichidh seo aiseag droid-ng air a’ chiad bhùtadh às dèidh gach ùrachadh.</string>
+    <string name="update_recovery_setting">Ùraich aiseag droid-ng leis an t-siostam obrachaidh</string>
+</resources>

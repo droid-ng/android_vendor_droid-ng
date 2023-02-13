@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">Carauterístiques de droid-ng</string>
+    <string name="update_recovery_title">Anovar el recovery de droid-ng</string>
+    <string name="update_recovery_description">Anueva\'l recovery de droid-ng nel primer arrinque de cada anovamientu.</string>
+    <string name="update_recovery_setting">Anovar el recovery xunto con droid-ng</string>
+</resources>

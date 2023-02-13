@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">droid-ng funkce</string>
+    <string name="update_recovery_title">Aktualizovat droid-ng recovery</string>
+    <string name="update_recovery_description">Aktualizace droid-ng recovery při prvním spuštění po každé aktualizaci</string>
+    <string name="update_recovery_setting">Aktualizovat droid-ng recovery společně s OS</string>
+</resources>

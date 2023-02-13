@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">Funksionet e droid-ng</string>
+    <string name="update_recovery_title">Përditësoni rikuperimin e droid-ng</string>
+    <string name="update_recovery_description">Përditëson Rikuperimin e droid-ng në boot-in e parë pas çdo përditësimi.</string>
+    <string name="update_recovery_setting">Përditësoni rikuperimin droid-ng krahas OS</string>
+</resources>

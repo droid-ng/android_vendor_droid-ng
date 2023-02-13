@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">Značajke droid-ng-a</string>
+    <string name="update_recovery_title">Ažuriraj droid-ng Recovery</string>
+    <string name="update_recovery_description">Ažuriraj droid-ng Recovery pri prvom pokretanju nakon svakog ažuriranja.</string>
+    <string name="update_recovery_setting">Ažuriraj droid-ng Recovery zajedno sa OS</string>
+</resources>

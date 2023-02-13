@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">Các tính năng droid-ng</string>
+    <string name="update_recovery_title">Cập nhật droid-ng Recovery</string>
+    <string name="update_recovery_description">Cập nhật droid-ng Recovery khi bật máy lần đầu sau mỗi bản cập nhật.</string>
+    <string name="update_recovery_setting">Cập nhật droid-ng Recovery song song với hệ điều hành</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="lmo_motto_message" />
+    <string name="setup_services">Funcionalidades droid-ng</string>
+    <string name="update_recovery_title">Atualizar a recuperação droid-ng</string>
+    <string name="update_recovery_description">Atualiza a recuperação droid-ng na primeira inicialização subsequente a cada atualização.</string>
+    <string name="update_recovery_setting">Atualizar a recuperação droid-ng aquando a atualização do SO</string>
+</resources>
