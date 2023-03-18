@@ -16,7 +16,7 @@
 # Customer version settings
 
 # Customer version variable name
-# Default: LMODROID_BUILD_VERSION
+# Default: LMODROID_BUILD_NAME
 CUSTOMER_VERSION_VAR_NAME := NG_BUILD_VERSION
 
 # Customer specific code below
@@ -53,7 +53,7 @@ PRODUCT_BRAND := droid-ng
 NG_BUILD_VERSION := $(NG_NAME)-$(NG_VERSION)-$(BUILD_DATE)-$(NG_BUILDTYPE)-$(LMODROID_BUILD)
 
 LMODROID_PROPERTIES := \
-    ro.lmodroid.build_name=$(NG_BUILD_NAME) \
+    ro.lmodroid.build_name=$(NG_BUILD_VERSION) \
     ro.lmodroid.build_date=$(BUILD_DATE) \
     ro.lmodroid.build_type=$(NG_BUILDTYPE) \
     ro.lmodroid.version=$(NG_VERSION)
