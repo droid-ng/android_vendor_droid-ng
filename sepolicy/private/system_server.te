@@ -1,0 +1,2 @@
+get_prop(system_server, gms_feature_prop)
+

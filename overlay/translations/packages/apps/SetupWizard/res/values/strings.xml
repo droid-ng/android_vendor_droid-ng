@@ -1,0 +1,12 @@
+<resources>
+    <!-- GMS feature -->
+    <string name="device_reboot">Device will reboot to finish setup.</string>
+    <string name="gapps_config">Configure preinstalled apps</string>
+    <string name="gapps_config_desc">You are not able to change this later. If you are unsure, you probably want to choose \"Google apps\".
+        \nmicroG is not recommened for people who don\'t know what they are doing. The \"Google apps\" option and both \"microG + Play Store\" options contain proprietary software.</string>
+    <string name="gapps">Google apps</string>
+    <string name="vanilla">Vanilla</string>
+    <string name="microg">microG</string>
+    <string name="microg_ps">microG + Play Store</string>
+    <string name="microg_s">microG + Play Store + Contact/Calendar Sync</string>
+</resources>

@@ -95,7 +95,7 @@ public class BootReceiver extends BroadcastReceiver {
                 "android.permission.ACTIVITY_RECOGNITION", "android.permission.READ_CONTACTS", "android.permission.WRITE_CONTACTS",
                 "android.permission.GET_ACCOUNTS", "android.permission.BODY_SENSORS", "android.permission.CAMERA",
                 "android.permission.RECORD_AUDIO", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE",
-                "android.permission.ACCESS_MEDIA_LOCATION", "android.permission.FAKE_PACKAGE_SIGNATURE"
+                "android.permission.ACCESS_MEDIA_LOCATION", "android.permission.FAKE_PACKAGE_SIGNATURE", "android.permission.POST_NOTIFICATIONS"
         });
         grantPermissions(pm, "com.google.android.gsf", new String[] {
                 "android.permission.READ_CALL_LOG", "android.permission.WRITE_CALL_LOG",
@@ -117,7 +117,8 @@ public class BootReceiver extends BroadcastReceiver {
                 "android.permission.ACTIVITY_RECOGNITION", "android.permission.READ_CONTACTS", "android.permission.WRITE_CONTACTS",
                 "android.permission.GET_ACCOUNTS", "android.permission.CAMERA", "android.permission.READ_CALENDAR",
                 "android.permission.RECORD_AUDIO", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE",
-                "android.permission.ACCESS_MEDIA_LOCATION","android.permission.WRITE_CALENDAR", "android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION",
+                "android.permission.ACCESS_MEDIA_LOCATION","android.permission.WRITE_CALENDAR", "android.permission.ACCESS_FINE_LOCATION",
+                "android.permission.ACCESS_COARSE_LOCATION", "android.permission.POST_NOTIFICATIONS"
         });
         grantPermissions(pm, "com.android.vending", new String[] {
                 "android.permission.SEND_SMS", "android.permission.RECEIVE_SMS", "android.permission.READ_SMS",
@@ -131,7 +132,7 @@ public class BootReceiver extends BroadcastReceiver {
                 "android.permission.READ_CONTACTS", "android.permission.WRITE_CONTACTS",
                 "android.permission.GET_ACCOUNTS", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE",
                 "android.permission.ACCESS_MEDIA_LOCATION", "android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION",
-                "android.permission.FAKE_PACKAGE_SIGNATURE"
+                "android.permission.FAKE_PACKAGE_SIGNATURE", "android.permission.POST_NOTIFICATIONS"
         });
         grantPermissions(pm, "com.google.android.setupwizard", new String[] {
                 "android.permission.ACCESS_BACKGROUND_LOCATION", "android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION",
@@ -139,7 +140,7 @@ public class BootReceiver extends BroadcastReceiver {
                 "android.permission.PROCESS_OUTGOING_CALLS", "android.permission.READ_PHONE_STATE",
                 "android.permission.CALL_PHONE", "android.permission.ADD_VOICEMAIL", "android.permission.USE_SIP",
                 "android.permission.READ_CONTACTS", "android.permission.WRITE_CONTACTS",
-                "android.permission.GET_ACCOUNTS", "android.permission.CAMERA"
+                "android.permission.GET_ACCOUNTS", "android.permission.CAMERA", "android.permission.POST_NOTIFICATIONS"
         });
         grantPermissions(pm, "com.google.android.marvin.talkback", new String[] {
                 "android.permission.ACCESS_BACKGROUND_LOCATION",
@@ -149,16 +150,16 @@ public class BootReceiver extends BroadcastReceiver {
                 "android.permission.UWB_RANGING", "android.permission.READ_PHONE_STATE",
                 "android.permission.CALL_PHONE", "android.permission.ADD_VOICEMAIL", "android.permission.USE_SIP",
                 "android.permission.CAMERA", "android.permission.RECORD_AUDIO",
-                "android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION"
+                "android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION", "android.permission.POST_NOTIFICATIONS"
         });
         grantPermissions(pm, "com.google.android.syncadapters.calendar", new String[]{
-                "android.permission.READ_CALENDAR", "android.permission.WRITE_CALENDAR"
+                "android.permission.READ_CALENDAR", "android.permission.WRITE_CALENDAR", "android.permission.POST_NOTIFICATIONS"
         });
         grantPermissions(pm, "com.google.android.syncadapters.contacts", new String[]{
-                "android.permission.READ_CONTACTS", "android.permission.WRITE_CONTACTS", "android.permission.GET_ACCOUNTS"
+                "android.permission.READ_CONTACTS", "android.permission.WRITE_CONTACTS", "android.permission.GET_ACCOUNTS", "android.permission.POST_NOTIFICATIONS"
         });
         grantPermissions(pm, "com.google.android.tts", new String[] {
-                "android.permission.RECORD_AUDIO"
+                "android.permission.RECORD_AUDIO", "android.permission.POST_NOTIFICATIONS"
         });
         grantPermissions(pm, "com.google.android.markup", new String[] {
                 "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE",
@@ -168,7 +169,7 @@ public class BootReceiver extends BroadcastReceiver {
                 "android.permission.ACCESS_BACKGROUND_LOCATION",
                 "android.permission.READ_CALL_LOG", "android.permission.WRITE_CALL_LOG",
                 "android.permission.PROCESS_OUTGOING_CALLS", "android.permission.READ_CONTACTS", "android.permission.WRITE_CONTACTS",
-                "android.permission.GET_ACCOUNTS", "android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION"
+                "android.permission.GET_ACCOUNTS", "android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION", "android.permission.POST_NOTIFICATIONS"
         });
         grantPermissions(pm, "com.google.android.projection.gearhead", new String[] {
                 "android.permission.SEND_SMS", "android.permission.RECEIVE_SMS", "android.permission.READ_SMS",
@@ -182,7 +183,7 @@ public class BootReceiver extends BroadcastReceiver {
                 "android.permission.READ_CONTACTS", "android.permission.WRITE_CONTACTS",
                 "android.permission.GET_ACCOUNTS", "android.permission.READ_CALENDAR",
                 "android.permission.RECORD_AUDIO", "android.permission.WRITE_CALENDAR", "android.permission.ACCESS_FINE_LOCATION",
-                "android.permission.ACCESS_COARSE_LOCATION"
+                "android.permission.ACCESS_COARSE_LOCATION", "android.permission.POST_NOTIFICATIONS"
         });
     }
 

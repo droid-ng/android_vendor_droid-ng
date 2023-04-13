@@ -20,6 +20,7 @@ endif
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     vendor/droid-ng/build/security/ng
 
+# overlays
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
     vendor/droid-ng/overlay/branding \
     vendor/droid-ng/overlay/translations \
@@ -37,5 +38,38 @@ else
 PRODUCT_PACKAGE_OVERLAYS += vendor/droid-ng/overlay/wallpapers_1080p
 endif
 
+# misc
 PRODUCT_PACKAGES += \
-    NgParts
+    NgParts \
+    additional_repos.xml
+
+# gms feature
+ifneq ($(TARGET_DISABLE_GAPPS),true)
+ifeq ($(filter arm64 arm x86 x86_64,$(TARGET_GAPPS_ARCH)),)
+$(error Invalid or unset TARGET_GAPPS_ARCH "$(TARGET_GAPPS_ARCH)" - must be one of arm arm64 x86 x86_64 - or set TARGET_DISABLE_GAPPS to true)
+endif
+$(call inherit-product, vendor/gapps/$(TARGET_GAPPS_ARCH)/$(TARGET_GAPPS_ARCH)-vendor.mk)
+PRODUCT_PACKAGES += \
+    microGmsCore \
+    GsfProxy \
+    FakeStore \
+    microPhonesky
+
+PRODUCT_COPY_FILES += \
+    vendor/droid-ng/prebuilts/privapp_permissions_gmsfeature.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp_permissions_gmsfeature.xml
+
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.gms_feature=1
+
+ifeq ($(TARGET_SPOOF_GAPPS_DEVICE_PROFILE),true)
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.pixelprops_gms=1
+else
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.pixelprops_gms=0
+endif
+else
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.gms_feature=0
+endif
+
