@@ -1,8 +1,21 @@
 # Extra stuff for config.mk goes here
 
 # used by SdkLite library
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.ng.build.version.plat.sdk=1
+
+ifeq ($(TARGET_BUILD_VARIANT),user)
+# NOTE: enabling this on user builds causes adbd crashes
+# because the SEPolicy for "su" domain is missing. A commit
+# like this is STRICTLY required for it to work!!!
+# https://github.com/droidng/android_system_sepolicy/commit/b491a953db739aa2daffabc13c9b153d329013ee
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+        ro.debuggablr=0
+else
+# P.S.: debuggablr is not a typo
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+        ro.debuggablr=1
+endif
 
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     vendor/droid-ng/build/security/ng
