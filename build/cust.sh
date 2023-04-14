@@ -61,8 +61,16 @@ function ngremote()
         return 1
     fi
     git remote rm ng 2> /dev/null
-    local REMOTE=$(git config --get remote.github.projectname)
+    local REMOTE=$(git config --get remote.lmodroid.projectname)
     local LMODROID="true"
+    local LINEAGE="true"
+    if [ -z "$REMOTE" ]
+    then
+        REMOTE=$(git config --get remote.lineage.projectname)
+        LMODROID="false"
+    else
+        LINEAGE="false"
+    fi
     if [ -z "$REMOTE" ]
     then
         REMOTE=$(git config --get remote.aosp.projectname)
@@ -83,9 +91,14 @@ function ngremote()
     then
         local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
     else
-	local PROJECT=$(echo $REMOTE | sed -e "s#LMODroid/##g")
+    if [ $LINEAGE = "true" ]
+    then
+        local PROJECT=$REMOTE
+    else
+	local PROJECT=$(echo $REMOTE | sed -e "s#LMODroid/##g; s#platform_#android_#g")
     fi
-    local ORG=droidng
+    fi
+    local ORG=droid-ng
     local PFX="$ORG/"
 
     git remote add ng ssh://git@github.com/$PFX$PROJECT
@@ -99,8 +112,16 @@ function ghfork()
         echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
         return 1
     fi
-    local REMOTE=$(git config --get remote.github.projectname)
+    local REMOTE=$(git config --get remote.lmodroid.projectname)
     local LMODROID="true"
+    local LINEAGE="true"
+    if [ -z "$REMOTE" ]
+    then
+        REMOTE=$(git config --get remote.lineage.projectname)
+        LMODROID="false"
+    else
+        LINEAGE="false"
+    fi
     if [ -z "$REMOTE" ]
     then
         REMOTE=$(git config --get remote.aosp.projectname)
@@ -114,20 +135,30 @@ function ghfork()
     git remote rm ng 2> /dev/null
     local ORG=droid-ng
     local PFX="$ORG/"
-    if [ $LMODROID = "false" ]
+    if [ $LMODROID = "false" ] && [ $LINEAGE = "false" ]
     then
         local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
 	local REPO=$PFX$PROJECT
 	gh repo create --public --disable-wiki --disable-issues $ORG/"$PROJECT"
     else
-	local PROJECT=$(echo $REMOTE | sed -e "s#LibreMobileOS/##g")
-	local REPO=$PFX$PROJECT
-	gh repo fork --org=$ORG --remote=false --clone=false LibreMobileOS/"$PROJECT"
+    if [ $LINEAGE = "true" ]
+    then
+        local PROJECT=$REMOTE
+        local FORG=LineageOS
+        local FNAME=$PROJECT
+    else
+	local PROJECT=$(echo $REMOTE | sed -e "s#LMODroid/##g")
+    local FNAME=$(echo $PROJECT | sed -e "s#platform_#android_#g")
+        local FORG=LMODroid
+    fi
+	local REPO=$PFX$FNAME
+	gh repo fork --org=$ORG --remote=false --clone=false --fork-name="$FNAME" "$FORG"/"$PROJECT"
     fi
     git remote add ng ssh://git@github.com/"$REPO"
+    sleep 1
     git push ng HEAD:refs/heads/"$NG_BRANCH"
     gh repo edit "$REPO" --default-branch="$NG_BRANCH"
-    cd "$ANDROID_BUILD_TOP/android"
+    cd "$ANDROID_BUILD_TOP/manifest"
     for branch in $(git ls-remote --heads ssh://git@github.com/"$REPO" | cut -f2); do 
 	if [ "$branch" != "refs/heads/$NG_BRANCH" ]; then
             echo Deleting "$branch"
@@ -182,18 +213,18 @@ function lmofetch() {
 	echo "Is this an droid-ng repo?"
 	return 1
     fi
-    local REMOTE=$(git config --get remote.github.url)
+    local REMOTE=$(git config --get remote.lmodroid.url)
     if [ -z "$REMOTE" ]
     then
-        githubremote
+        lmoremote
     fi
-    local REMOTE=$(git config --get remote.github.url)
+    local REMOTE=$(git config --get remote.lmodroid.url)
     if ! git ls-remote --heads "$REMOTE" 2>/dev/null | cut -f2 | grep -q "$LMO_BRANCH"; then
         echo "LMO has no branch for this repo, fetching from AOSP"
 	aospfetch
 	return 0
     fi
-    git fetch github "$LMO_BRANCH"
+    git fetch lmodroid "$LMO_BRANCH"
 }
 
 function aospfetch() {
