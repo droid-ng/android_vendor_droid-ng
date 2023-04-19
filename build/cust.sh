@@ -207,7 +207,7 @@ function eatwrp()
 }
 
 function lmofetch() {
-    local REMOTE=$(git config --get remote.ng.projectname)
+    local REMOTE=$(git config --get remote.ng.url)
     if [ -z "$REMOTE" ]
     then
 	echo "Is this an droid-ng repo?"
@@ -228,7 +228,7 @@ function lmofetch() {
 }
 
 function aospfetch() {
-    local REMOTE=$(git config --get remote.ng.projectname)
+    local REMOTE=$(git config --get remote.ng.url)
     if [ -z "$REMOTE" ]
     then
 	echo "Is this an droid-ng repo?"
@@ -250,7 +250,7 @@ function lmomerge() {
 }
 
 function push() {
-    local REMOTE=$(git config --get remote.ng.projectname)
+    local REMOTE=$(git config --get remote.ng.url)
     local RH=ng
     local BRNCH=$NG_BRANCH
     if [ -z "$REMOTE" ]
@@ -268,12 +268,12 @@ function push() {
 }
 
 function pull() {
-    local REMOTE=$(git config --get remote.ng.projectname)
+    local REMOTE=$(git config --get remote.ng.url)
     local RH=ng
     local BRNCH=$NG_BRANCH
     if [ -z "$REMOTE" ]
     then
-        REMOTE=$(git config --get remote.devices.projectname)
+        REMOTE=$(git config --get remote.devices.url)
 	RH=devices
 	BRNCH=$DEV_BRANCH
     fi
