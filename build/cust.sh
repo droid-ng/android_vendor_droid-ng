@@ -168,6 +168,16 @@ function lineageremote()
     echo "Remote 'lineage' created"
 }
 
+function mfrebase()
+{
+    pushd $ANDROID_BUILD_TOP/manifest >/dev/null
+    git checkout ng-v4-githubmirror
+    git reset --hard ng-v4
+    git cherry-pick HEAD@{1}
+    git checkout ng-v4
+    popd >/dev/null
+}
+
 function ghfork()
 {
     if ! git rev-parse --git-dir &> /dev/null
@@ -288,7 +298,7 @@ function lmofetch() {
     local REMOTE=$(git config --get remote.lmogerrit.url)
     if ! git ls-remote --heads "$REMOTE" 2>/dev/null | cut -f2 | grep -q "$LMO_BRANCH"; then
         echo "LMO has no branch for this repo, fetching from LOS"
-	losfetch
+	ngtext="\n" losfetch
 	return 0
     fi
     git fetch lmodroid "$LMO_BRANCH"
@@ -316,7 +326,7 @@ function losfetch() {
         BRNCH="$LOS_BRANCH2"
         if ! git ls-remote --heads "$REMOTE" 2>/dev/null | cut -f2 | grep -q "$BRNCH"; then
             echo "LOS has no branch for this repo, fetching from AOSP"
-            aospfetch
+            ngtext="\n" aospfetch
             return 0
         fi
     fi
@@ -365,6 +375,9 @@ function push() {
     fi
     echo -n "$ngtext"
     git push "$RH" HEAD:"$BRNCH" $@
+    if git show-ref --quiet refs/heads/ng-v4-githubmirror; then
+        git push ng ng-v4-githubmirror -f
+    fi
 }
 
 function pull() {
