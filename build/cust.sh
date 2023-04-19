@@ -210,9 +210,13 @@ function lmofetch() {
     local REMOTE=$(git config --get remote.ng.url)
     if [ -z "$REMOTE" ]
     then
+    if [ -z "$ngtext" ]
+    then
 	echo "Is this an droid-ng repo?"
+    fi
 	return 1
     fi
+    echo -n "$ngtext"
     local REMOTE=$(git config --get remote.lmodroid.url)
     if [ -z "$REMOTE" ]
     then
@@ -261,9 +265,13 @@ function push() {
     fi
     if [ -z "$REMOTE" ]
     then
+    if [ -z "$ngtext" ]
+    then
 	echo "Is this an droid-ng repo?"
+    fi
 	return 1
     fi
+    echo -n "$ngtext"
     git push "$RH" HEAD:"$BRNCH" $@
 }
 
@@ -279,9 +287,13 @@ function pull() {
     fi
     if [ -z "$REMOTE" ]
     then
+    if [ -z "$ngtext" ]
+    then
 	echo "Is this an droid-ng repo?"
+    fi
 	return 1
     fi
+    echo -n "$ngtext"
     git pull "$RH" "$BRNCH" $@
 }
 
@@ -290,12 +302,18 @@ function mergeall() {
     if [[ "$i" != "$ANDROID_BUILD_TOP/ng/"* ]] && # except ng/*...
 	[[ "$i" != "$ANDROID_BUILD_TOP/vendor/droid-ng"* ]]; then  # and droid-ng vendor...
 	# which are no forks..
-	cd $i; echo -n "$(pwd | cut -b $((${#ANDROID_BUILD_TOP} + 2))- ): "; lmomerge; cd - 1>/dev/null # merge from LMODroid.
+	cd $i; ngtext="$(pwd | cut -b $((${#ANDROID_BUILD_TOP} + 2))- ): " lmomerge $@; cd - 1>/dev/null # merge from LMODroid.
     fi; done
 }
 
 function pushall() {
     for i in $(repo forall -c pwd); do  # For every repo project..
-	cd $i; echo -n "$(pwd | cut -b $((${#ANDROID_BUILD_TOP} + 2))- ): "; push $@; cd - 1>/dev/null # push
+	cd $i; ngtext="$(pwd | cut -b $((${#ANDROID_BUILD_TOP} + 2))- ): " push $@; cd - 1>/dev/null # push
+    done
+}
+
+function pullall() {
+    for i in $(repo forall -c pwd); do  # For every repo project..
+	cd $i; ngtext="$(pwd | cut -b $((${#ANDROID_BUILD_TOP} + 2))- ): " pull $@; cd - 1>/dev/null # pull
     done
 }
