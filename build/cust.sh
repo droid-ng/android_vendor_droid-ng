@@ -94,20 +94,20 @@ function ngremote()
     fi
     if [ -z "$REMOTE" ]
     then
-	echo "Failed to find repo name."
-	return 1
+        echo "Failed to find repo name."
+        return 1
     fi
 
     if [ $LMODROID = "false" ]
     then
         local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
     else
-    if [ $LINEAGE = "true" ]
-    then
-        local PROJECT=$REMOTE
-    else
-	local PROJECT=$(echo $REMOTE | sed -e "s#LMODroid/##g; s#platform_#android_#g")
-    fi
+        if [ $LINEAGE = "true" ]
+        then
+            local PROJECT=$REMOTE
+        else
+            local PROJECT=$(echo $REMOTE | sed -e "s#LMODroid/##g; s#platform_#android_#g")
+        fi
     fi
     local ORG=droid-ng
     local PFX="$ORG/"
@@ -146,20 +146,20 @@ function lineageremote()
     fi
     if [ -z "$REMOTE" ]
     then
-	echo "Failed to find repo name."
-	return 1
+        echo "Failed to find repo name."
+        return 1
     fi
 
     if [ $LMODROID = "false" ]
     then
         local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
     else
-    if [ $NG = "true" ]
-    then
-        local PROJECT=$REMOTE
-    else
-	local PROJECT=$(echo $REMOTE | sed -e "s#LMODroid/##g; s#platform_#android_#g")
-    fi
+        if [ $NG = "true" ]
+        then
+            local PROJECT=$REMOTE
+        else
+        	local PROJECT=$(echo $REMOTE | sed -e "s#LMODroid/##g; s#platform_#android_#g")
+        fi
     fi
     local ORG=LineageOS
     local PFX="$ORG/"
@@ -211,21 +211,21 @@ function ghfork()
     if [ $LMODROID = "false" ] && [ $LINEAGE = "false" ]
     then
         local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
-	local REPO=$PFX$PROJECT
-	gh repo create --public --disable-wiki --disable-issues $ORG/"$PROJECT"
+        local REPO=$PFX$PROJECT
+        gh repo create --public --disable-wiki --disable-issues $ORG/"$PROJECT"
     else
-    if [ $LINEAGE = "true" ]
-    then
-        local PROJECT=$REMOTE
-        local FORG=LineageOS
-        local FNAME=$PROJECT
-    else
-	local PROJECT=$(echo $REMOTE | sed -e "s#LMODroid/##g")
-    local FNAME=$(echo $PROJECT | sed -e "s#platform_#android_#g")
-        local FORG=LMODroid
-    fi
-	local REPO=$PFX$FNAME
-	gh repo fork --org=$ORG --remote=false --clone=false --fork-name="$FNAME" "$FORG"/"$PROJECT"
+        if [ $LINEAGE = "true" ]
+        then
+            local PROJECT=$REMOTE
+            local FORG=LineageOS
+            local FNAME=$PROJECT
+        else
+            local PROJECT=$(echo $REMOTE | sed -e "s#LMODroid/##g")
+            local FNAME=$(echo $PROJECT | sed -e "s#platform_#android_#g")
+            local FORG=LMODroid
+        fi
+        local REPO=$PFX$FNAME
+        gh repo fork --org=$ORG --remote=false --clone=false --fork-name="$FNAME" "$FORG"/"$PROJECT"
     fi
     git remote add ng ssh://git@github.com/"$REPO"
     sleep 1
@@ -233,10 +233,10 @@ function ghfork()
     gh repo edit "$REPO" --default-branch="$NG_BRANCH"
     cd "$ANDROID_BUILD_TOP/manifest"
     for branch in $(git ls-remote --heads ssh://git@github.com/"$REPO" | cut -f2); do 
-	if [ "$branch" != "refs/heads/$NG_BRANCH" ]; then
+        if [ "$branch" != "refs/heads/$NG_BRANCH" ]; then
             echo Deleting "$branch"
             git push --delete ssh://git@github.com/"$REPO" "$branch"
-	fi
+        fi
     done
     cd -
 
@@ -258,20 +258,20 @@ function eatwrp()
         fi
         if [[ "$(adb get-state)" != sideload ]]
         then
-        echo "Waiting for device..."
-        adb wait-for-device-recovery
-        echo "Found device"
-        if ! (adb shell getprop ro.lmodroid.device | grep -q "$LMODROID_BUILD"); then
-            echo "The connected device does not appear to be $LMODROID_BUILD, run away!"
-	        return 1
-        else
-            echo "Please reboot to recovery and start sideload for install"
-    	fi
-    	fi
+            echo "Waiting for device..."
+            adb wait-for-device-recovery
+            echo "Found device"
+            if ! (adb shell getprop ro.lmodroid.device | grep -q "$LMODROID_BUILD"); then
+                echo "The connected device does not appear to be $LMODROID_BUILD, run away!"
+                return 1
+            else
+                echo "Please reboot to recovery and start sideload for install"
+            fi
+        fi
         adb wait-for-sideload
         adb sideload $ZIPPATH
-	    adb wait-for-recovery
-	    adb shell twrp reboot
+        adb wait-for-recovery
+        adb shell twrp reboot
         return $?
     else
         echo "Nothing to eat"
@@ -283,11 +283,11 @@ function lmofetch() {
     local REMOTE=$(git config --get remote.ng.url)
     if [ -z "$REMOTE" ]
     then
-    if [ -z "$ngtext" ]
-    then
-	echo "Is this an droid-ng repo?"
-    fi
-	return 1
+        if [ -z "$ngtext" ]
+        then
+            echo "Is this an droid-ng repo?"
+        fi
+        return 1
     fi
     echo -n "$ngtext"
     local REMOTE=$(git config --get remote.lmogerrit.url)
@@ -297,9 +297,9 @@ function lmofetch() {
     fi
     local REMOTE=$(git config --get remote.lmogerrit.url)
     if ! git ls-remote --heads "$REMOTE" 2>/dev/null | cut -f2 | grep -q "$LMO_BRANCH"; then
-        echo "LMO has no branch for this repo, fetching from LOS"
-	ngtext="\n" losfetch
-	return 0
+        echo -n "LMO has no branch for this repo, fetching from LOS"
+        ngtext="\n" losfetch
+        return 0
     fi
     git fetch lmodroid "$LMO_BRANCH"
 }
@@ -308,11 +308,11 @@ function losfetch() {
     local REMOTE=$(git config --get remote.ng.url)
     if [ -z "$REMOTE" ]
     then
-    if [ -z "$ngtext" ]
-    then
-	echo "Is this an droid-ng repo?"
-    fi
-	return 1
+        if [ -z "$ngtext" ]
+        then
+            echo "Is this an droid-ng repo?"
+        fi
+        return 1
     fi
     echo -n "$ngtext"
     local REMOTE=$(git config --get remote.lineage.url)
@@ -325,7 +325,7 @@ function losfetch() {
     if ! git ls-remote --heads "$REMOTE" 2>/dev/null | cut -f2 | grep -q "$BRNCH"; then
         BRNCH="$LOS_BRANCH2"
         if ! git ls-remote --heads "$REMOTE" 2>/dev/null | cut -f2 | grep -q "$BRNCH"; then
-            echo "LOS has no branch for this repo, fetching from AOSP"
+            echo -n "LOS has no branch for this repo, fetching from AOSP"
             ngtext="\n" aospfetch
             return 0
         fi
@@ -337,9 +337,13 @@ function aospfetch() {
     local REMOTE=$(git config --get remote.ng.url)
     if [ -z "$REMOTE" ]
     then
-	echo "Is this an droid-ng repo?"
-	return 1
+        if [ -z "$ngtext" ]
+        then
+            echo "Is this an droid-ng repo?"
+        fi
+    	return 1
     fi
+    echo -n "$ngtext"
     local REMOTE=$(git config --get remote.aosp.url)
     if [ -z "$REMOTE" ]
     then
@@ -362,21 +366,21 @@ function push() {
     if [ -z "$REMOTE" ]
     then
         REMOTE=$(git config --get remote.devices.projectname)
-	RH=devices
-	BRNCH=$DEV_BRANCH
+        RH=devices
+        BRNCH=$DEV_BRANCH
     fi
     if [ -z "$REMOTE" ]
     then
-    if [ -z "$ngtext" ]
-    then
-	echo "Is this an droid-ng repo?"
-    fi
-	return 1
+        if [ -z "$ngtext" ]
+        then
+            echo "Is this an droid-ng repo?"
+        fi
+        return 1
     fi
     echo -n "$ngtext"
     git push "$RH" HEAD:"$BRNCH" $@
     if git show-ref --quiet refs/heads/ng-v4-githubmirror; then
-        git push ng ng-v4-githubmirror -f
+        git push ng ng-v4-githubmirror >/dev/null 2>&1 || git push ng ng-v4-githubmirror -f
     fi
 }
 
@@ -387,16 +391,16 @@ function pull() {
     if [ -z "$REMOTE" ]
     then
         REMOTE=$(git config --get remote.devices.url)
-	RH=devices
-	BRNCH=$DEV_BRANCH
+        RH=devices
+        BRNCH=$DEV_BRANCH
     fi
     if [ -z "$REMOTE" ]
     then
-    if [ -z "$ngtext" ]
-    then
-	echo "Is this an droid-ng repo?"
-    fi
-	return 1
+        if [ -z "$ngtext" ]
+        then
+        	echo "Is this an droid-ng repo?"
+        fi
+        return 1
     fi
     echo -n "$ngtext"
     git pull "$RH" "$BRNCH" $@
@@ -405,20 +409,20 @@ function pull() {
 function mergeall() {
     for i in $(repo forall -c pwd); do  # For every repo project..
     if [[ "$i" != "$ANDROID_BUILD_TOP/ng/"* ]] && # except ng/*...
-	[[ "$i" != "$ANDROID_BUILD_TOP/vendor/droid-ng"* ]]; then  # and droid-ng vendor...
-	# which are no forks..
-	cd $i; ngtext="$(pwd | cut -b $((${#ANDROID_BUILD_TOP} + 2))- ): " lmomerge $@; cd - 1>/dev/null # merge from LMODroid.
+        [[ "$i" != "$ANDROID_BUILD_TOP/vendor/droid-ng"* ]]; then  # and droid-ng vendor...
+        # which are no forks..
+        cd $i; ngtext="$(pwd | cut -b $((${#ANDROID_BUILD_TOP} + 2))- ): " lmomerge $@; cd - 1>/dev/null # merge from LMODroid.
     fi; done
 }
 
 function pushall() {
     for i in $(repo forall -c pwd); do  # For every repo project..
-	cd $i; ngtext="$(pwd | cut -b $((${#ANDROID_BUILD_TOP} + 2))- ): " push $@; cd - 1>/dev/null # push
+        cd $i; ngtext="$(pwd | cut -b $((${#ANDROID_BUILD_TOP} + 2))- ): " push $@; cd - 1>/dev/null # push
     done
 }
 
 function pullall() {
     for i in $(repo forall -c pwd); do  # For every repo project..
-	cd $i; ngtext="$(pwd | cut -b $((${#ANDROID_BUILD_TOP} + 2))- ): " pull $@; cd - 1>/dev/null # pull
+        cd $i; ngtext="$(pwd | cut -b $((${#ANDROID_BUILD_TOP} + 2))- ): " pull $@; cd - 1>/dev/null # pull
     done
 }
