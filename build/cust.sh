@@ -4,15 +4,18 @@ __customer_help() {
 cat <<EOF
 Additional droid-ng functions:
 - ngremote:        Add git remote for droid-ng GitHub.
+- lineageremote:   Add git remote for LineageOS GitHub.
 - ghfork:          Fork repo from LibreMobileOS, or if branch-repo combo doesn't exist, create one.
 - eatwrp:          eat, but for TWRP.
-- lmofetch:        Fetch current repo from LibreMobileOS.
+- lmofetch:        Fetch current repo from LibreMobileOS (or LineageOS or AOSP).
+- losfetch:        Fetch current repo from LineageOS (or AOSP).
 - aospfetch:       Fetch current repo from AOSP.
-- lmomerge:        Merge current repo with LibreMobileOS.
 - push:            Push new commits to droid-ng github.
+- merge:           Merge current repo with upstream.
+- pull:            Pull new commits from droid-ng github.
 - pushall:         Push new commits from all repos to droid-ng github.
 - mergeall:        Merge all repos with LMODroid.
-- pull:            Pull new commits from droid-ng github.
+- pullall:         Pull all repos' commits from droid-ng github.
 EOF
 }
 
@@ -48,6 +51,14 @@ if [ -z "$LMO_BRANCH" ]; then
     LMO_BRANCH=thirteen
 fi
 
+# lineage branch
+if [ -z "$LOS_BRANCH" ]; then
+    LOS_BRANCH=lineage-20.0
+fi
+if [ -z "$LOS_BRANCH2" ]; then
+    LOS_BRANCH2=lineage-20
+fi
+
 # aosp tag
 if [ -z "$AOSP_TAG" ]; then
     AOSP_TAG=$(python3 $ANDROID_BUILD_TOP/vendor/droid-ng/tools/get-aosp-tag.py)
@@ -73,12 +84,12 @@ function ngremote()
     fi
     if [ -z "$REMOTE" ]
     then
-        REMOTE=$(git config --get remote.aosp.projectname)
+        REMOTE=$(git config --get remote.clo.projectname)
         LMODROID="false"
     fi
     if [ -z "$REMOTE" ]
     then
-        REMOTE=$(git config --get remote.caf.projectname)
+        REMOTE=$(git config --get remote.aosp.projectname)
         LMODROID="false"
     fi
     if [ -z "$REMOTE" ]
@@ -103,6 +114,58 @@ function ngremote()
 
     git remote add ng ssh://git@github.com/$PFX$PROJECT
     echo "Remote 'ng' created"
+}
+
+function lineageremote()
+{
+    if ! git rev-parse --git-dir &> /dev/null
+    then
+        echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
+        return 1
+    fi
+    git remote rm lineage 2> /dev/null
+    local REMOTE=$(git config --get remote.lmodroid.projectname)
+    local LMODROID="true"
+    local NG="true"
+    if [ -z "$REMOTE" ]
+    then
+        REMOTE=$(git config --get remote.ng.url | sed -e 's#.*[:/]droid-ng/##g')
+        LMODROID="false"
+    else
+        NG="false"
+    fi
+    if [ -z "$REMOTE" ]
+    then
+        REMOTE=$(git config --get remote.clo.projectname)
+        LMODROID="false"
+    fi
+    if [ -z "$REMOTE" ]
+    then
+        REMOTE=$(git config --get remote.aosp.projectname)
+        LMODROID="false"
+    fi
+    if [ -z "$REMOTE" ]
+    then
+	echo "Failed to find repo name."
+	return 1
+    fi
+
+    if [ $LMODROID = "false" ]
+    then
+        local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
+    else
+    if [ $NG = "true" ]
+    then
+        local PROJECT=$REMOTE
+    else
+	local PROJECT=$(echo $REMOTE | sed -e "s#LMODroid/##g; s#platform_#android_#g")
+    fi
+    fi
+    local ORG=LineageOS
+    local PFX="$ORG/"
+
+    git remote add lineage ssh://git@github.com/$PFX$PROJECT
+    echo "Remote 'lineage' created"
 }
 
 function ghfork()
@@ -217,18 +280,47 @@ function lmofetch() {
 	return 1
     fi
     echo -n "$ngtext"
-    local REMOTE=$(git config --get remote.lmodroid.url)
+    local REMOTE=$(git config --get remote.lmogerrit.url)
     if [ -z "$REMOTE" ]
     then
         lmoremote
     fi
-    local REMOTE=$(git config --get remote.lmodroid.url)
+    local REMOTE=$(git config --get remote.lmogerrit.url)
     if ! git ls-remote --heads "$REMOTE" 2>/dev/null | cut -f2 | grep -q "$LMO_BRANCH"; then
-        echo "LMO has no branch for this repo, fetching from AOSP"
-	aospfetch
+        echo "LMO has no branch for this repo, fetching from LOS"
+	losfetch
 	return 0
     fi
     git fetch lmodroid "$LMO_BRANCH"
+}
+
+function losfetch() {
+    local REMOTE=$(git config --get remote.ng.url)
+    if [ -z "$REMOTE" ]
+    then
+    if [ -z "$ngtext" ]
+    then
+	echo "Is this an droid-ng repo?"
+    fi
+	return 1
+    fi
+    echo -n "$ngtext"
+    local REMOTE=$(git config --get remote.lineage.url)
+    if [ -z "$REMOTE" ]
+    then
+        lineageremote
+    fi
+    local REMOTE=$(git config --get remote.lineage.url)
+    local BRNCH="$LOS_BRANCH"
+    if ! git ls-remote --heads "$REMOTE" 2>/dev/null | cut -f2 | grep -q "$BRNCH"; then
+        BRNCH="$LOS_BRANCH2"
+        if ! git ls-remote --heads "$REMOTE" 2>/dev/null | cut -f2 | grep -q "$BRNCH"; then
+            echo "LOS has no branch for this repo, fetching from AOSP"
+            aospfetch
+            return 0
+        fi
+    fi
+    git fetch lineage "$BRNCH"
 }
 
 function aospfetch() {
@@ -248,9 +340,9 @@ function aospfetch() {
     git fetch aosp "$AOSP_TAG"
 }
 
-function lmomerge() {
+function merge() {
     lmofetch || return 0
-    git merge FETCH_HEAD || zsh
+    git merge FETCH_HEAD || $SHELL
 }
 
 function push() {
