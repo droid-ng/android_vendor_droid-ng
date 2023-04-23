@@ -52,8 +52,7 @@ $(call inherit-product, vendor/gapps/$(TARGET_GAPPS_ARCH)/$(TARGET_GAPPS_ARCH)-v
 PRODUCT_PACKAGES += \
     microGmsCore \
     GsfProxy \
-    FakeStore \
-    microPhonesky
+    FakeStore
 
 PRODUCT_COPY_FILES += \
     vendor/droid-ng/prebuilts/privapp_permissions_gmsfeature.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp_permissions_gmsfeature.xml

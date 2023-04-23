@@ -35,17 +35,6 @@ LOCAL_PRODUCT_MODULE := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := microPhonesky
-LOCAL_SRC_FILES := Phonesky.apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_PRIVILEGED_MODULE := true
-LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_PRODUCT_MODULE := true
-LOCAL_OPTIONAL_USES_LIBRARIES := org.apache.http.legacy androidx.window.extensions androidx.window.sidecar
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := microGmsCore
 LOCAL_SRC_FILES := GmsCore.apk
 LOCAL_MODULE_CLASS := APPS
