@@ -43,7 +43,7 @@ except ImportError:
 
 DEBUG = True
 
-custom_local_manifest = ".repo/local_manifests/default.xml"
+custom_local_manifest = ".repo/local_manifests/roomservice.xml"
 custom_default_revision = "ng-v4"
 custom_github_revision = "thirteen"
 custom_dependencies = "ng.dependencies"
@@ -110,6 +110,7 @@ def get_manifest_path():
         return '.repo/manifest.xml'
     except IndexError:
         return ".repo/manifests/{}".format(m.find("include").get("name"))
+
 
 def load_manifest(manifest):
     try:
@@ -178,24 +179,25 @@ def add_to_manifest(repos, fallback_branch=None):
     for repo in repos:
         repo_name = repo['repository']
         repo_path = repo['target_path']
-        
+
         if 'remote' in repo:
-            repo_remote=repo['remote']
-            repo_branch=custom_default_revision
+            repo_remote = repo['remote']
+            repo_branch = custom_default_revision
         elif "/" not in repo_name:
-            repo_remote=org_manifest
-            repo_branch=custom_default_revision
+            repo_remote = org_manifest
+            repo_branch = custom_default_revision
         elif "/" in repo_name:
-            repo_remote="github"
-            repo_branch=custom_github_revision
+            repo_remote = "github"
+            repo_branch = custom_github_revision
         if 'branch' in repo:
-            repo_branch=repo['branch']
+            repo_branch = repo['branch']
 
         if is_in_manifest(repo_path):
             print('already exists: %s' % repo_path)
             continue
 
-        print('Adding dependency:\nRepository: %s\nBranch: %s\nRemote: %s\nPath: %s\n' % (repo_name, repo_branch, repo_remote, repo_path))
+        print('Adding dependency:\nRepository: %s\nBranch: %s\nRemote: %s\nPath: %s\n' % (
+            repo_name, repo_branch, repo_remote, repo_path))
 
         project = ElementTree.Element(
             "project",
@@ -217,7 +219,8 @@ def add_to_manifest(repos, fallback_branch=None):
         else:
             print("Using default branch for %s" % repo_name)
         if 'clone-depth' in repo:
-            print("Setting clone-depth to %s for %s" % (repo['clone-depth'], repo_name))
+            print("Setting clone-depth to %s for %s" %
+                  (repo['clone-depth'], repo_name))
             project.set('clone-depth', repo['clone-depth'])
         lm.append(project)
 
@@ -228,6 +231,7 @@ def add_to_manifest(repos, fallback_branch=None):
     f = open(custom_local_manifest, 'w')
     f.write(raw_xml)
     f.close()
+
 
 _fetch_dep_cache = []
 
@@ -261,7 +265,8 @@ def fetch_dependencies(repo_path, fallback_branch=None):
             fetch_list.append(dependency)
             syncable_repos.append(dependency['target_path'])
         else:
-            print("Dependency already present in manifest: %s => %s" % (dependency['repository'], dependency['target_path']))
+            print("Dependency already present in manifest: %s => %s" %
+                  (dependency['repository'], dependency['target_path']))
 
     if fetch_list:
         print('Adding dependencies to manifest\n')
@@ -269,7 +274,8 @@ def fetch_dependencies(repo_path, fallback_branch=None):
 
     if syncable_repos:
         print('Syncing dependencies')
-        os.system('repo sync --force-sync --no-tags --current-branch --no-clone-bundle %s' % ' '.join(syncable_repos))
+        os.system('repo sync --force-sync --no-tags --current-branch --no-clone-bundle %s' %
+                  ' '.join(syncable_repos))
 
     for deprepo in syncable_repos:
         fetch_dependencies(deprepo)
@@ -360,7 +366,7 @@ def main():
 
     for repository in repositories:
         repo_name = repository['name']
-        print (repository['name'])
+        print(repository['name'])
 
         if not ((repo_name.startswith("device_") or repo_name.startswith("android_device_")) and
                 repo_name.endswith("_" + device)):
@@ -368,14 +374,16 @@ def main():
         print("Found repository: %s" % repository['name'])
 
         fallback_branch = detect_revision(repository)
-        manufacturer = repo_name[(15 if repo_name.startswith("android_device_") else 7):-(len(device)+1)]
+        manufacturer = repo_name[(15 if repo_name.startswith(
+            "android_device_") else 7):-(len(device)+1)]
         repo_path = "device/%s/%s" % (manufacturer, device)
         adding = [{'repository': repo_name, 'target_path': repo_path}]
 
         add_to_manifest(adding, fallback_branch)
 
         print("Syncing repository to retrieve project.")
-        os.system('repo sync --force-sync --no-tags --current-branch --no-clone-bundle %s' % repo_path)
+        os.system(
+            'repo sync --force-sync --no-tags --current-branch --no-clone-bundle %s' % repo_path)
         print("Repository synced!")
 
         fetch_dependencies(repo_path, fallback_branch)
@@ -386,6 +394,7 @@ def main():
           % (device, org_display))
     print("If this is in error, you may need to manually add it to your "
           "%s" % custom_local_manifest)
+
 
 if __name__ == "__main__":
     main()
