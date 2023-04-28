@@ -47,7 +47,8 @@ public class BootReceiver extends BroadcastReceiver {
             "android.permission.SEND_SMS", "android.permission.RECEIVE_SMS", "android.permission.READ_SMS",
             "android.permission.RECEIVE_WAP_PUSH", "android.permission.RECEIVE_MMS", "android.permission.READ_CELL_BROADCASTS",
             "android.permission.ACCESS_BACKGROUND_LOCATION", "android.permission.READ_CALL_LOG",
-            "android.permission.WRITE_CALL_LOG", "android.permission.PROCESS_OUTGOING_CALLS"
+            "android.permission.WRITE_CALL_LOG", "android.permission.PROCESS_OUTGOING_CALLS", "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE"
     };
 
     private static final String[] restrictedPkgNames = new String[] {
@@ -95,7 +96,9 @@ public class BootReceiver extends BroadcastReceiver {
                 "android.permission.ACTIVITY_RECOGNITION", "android.permission.READ_CONTACTS", "android.permission.WRITE_CONTACTS",
                 "android.permission.GET_ACCOUNTS", "android.permission.BODY_SENSORS", "android.permission.CAMERA",
                 "android.permission.RECORD_AUDIO", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE",
-                "android.permission.ACCESS_MEDIA_LOCATION", "android.permission.FAKE_PACKAGE_SIGNATURE", "android.permission.POST_NOTIFICATIONS"
+                "android.permission.ACCESS_MEDIA_LOCATION", "android.permission.FAKE_PACKAGE_SIGNATURE", "android.permission.POST_NOTIFICATIONS",
+                "android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION", "android.permission.READ_MEDIA_IMAGES",
+                "android.permission.READ_MEDIA_AUDIO", "android.permission.READ_MEDIA_VIDEO"
         });
         grantPermissions(pm, "com.google.android.gsf", new String[] {
                 "android.permission.READ_CALL_LOG", "android.permission.WRITE_CALL_LOG",
@@ -118,7 +121,8 @@ public class BootReceiver extends BroadcastReceiver {
                 "android.permission.GET_ACCOUNTS", "android.permission.CAMERA", "android.permission.READ_CALENDAR",
                 "android.permission.RECORD_AUDIO", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE",
                 "android.permission.ACCESS_MEDIA_LOCATION","android.permission.WRITE_CALENDAR", "android.permission.ACCESS_FINE_LOCATION",
-                "android.permission.ACCESS_COARSE_LOCATION", "android.permission.POST_NOTIFICATIONS"
+                "android.permission.ACCESS_COARSE_LOCATION", "android.permission.POST_NOTIFICATIONS", "android.permission.READ_MEDIA_IMAGES",
+                "android.permission.READ_MEDIA_AUDIO", "android.permission.READ_MEDIA_VIDEO"
         });
         grantPermissions(pm, "com.android.vending", new String[] {
                 "android.permission.SEND_SMS", "android.permission.RECEIVE_SMS", "android.permission.READ_SMS",
@@ -132,7 +136,8 @@ public class BootReceiver extends BroadcastReceiver {
                 "android.permission.READ_CONTACTS", "android.permission.WRITE_CONTACTS",
                 "android.permission.GET_ACCOUNTS", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE",
                 "android.permission.ACCESS_MEDIA_LOCATION", "android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION",
-                "android.permission.FAKE_PACKAGE_SIGNATURE", "android.permission.POST_NOTIFICATIONS"
+                "android.permission.FAKE_PACKAGE_SIGNATURE", "android.permission.POST_NOTIFICATIONS", "android.permission.READ_MEDIA_IMAGES",
+                "android.permission.READ_MEDIA_AUDIO", "android.permission.READ_MEDIA_VIDEO"
         });
         grantPermissions(pm, "com.google.android.setupwizard", new String[] {
                 "android.permission.ACCESS_BACKGROUND_LOCATION", "android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION",
@@ -163,7 +168,8 @@ public class BootReceiver extends BroadcastReceiver {
         });
         grantPermissions(pm, "com.google.android.markup", new String[] {
                 "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE",
-                "android.permission.ACCESS_MEDIA_LOCATION"
+                "android.permission.ACCESS_MEDIA_LOCATION", "android.permission.READ_MEDIA_IMAGES",
+                "android.permission.READ_MEDIA_AUDIO", "android.permission.READ_MEDIA_VIDEO"
         });
         grantPermissions(pm, "com.google.android.apps.restore", new String[] {
                 "android.permission.ACCESS_BACKGROUND_LOCATION",
