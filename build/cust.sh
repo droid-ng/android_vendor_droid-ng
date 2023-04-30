@@ -64,6 +64,59 @@ if [ -z "$AOSP_TAG" ]; then
     AOSP_TAG=$(python3 $ANDROID_BUILD_TOP/vendor/droid-ng/tools/get-aosp-tag.py)
 fi
 
+function lmoremote()
+{
+    if ! git rev-parse --git-dir &> /dev/null
+    then
+        echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
+        return 1
+    fi
+    git remote rm lmogerrit 2> /dev/null
+    local REMOTE=$(git config --get remote.lmodroid.projectname)
+    local LMODROID="true"
+    local LINEAGE="true"
+    if [ -z "$REMOTE" ]
+    then
+        REMOTE=$(git config --get remote.lineage.projectname)
+        LMODROID="false"
+    else
+        LINEAGE="false"
+    fi
+    if [ -z "$REMOTE" ]
+    then
+        REMOTE=$(git config --get remote.aosp.projectname)
+        LMODROID="false"
+    fi
+    if [ -z "$REMOTE" ]
+    then
+        REMOTE=$(git config --get remote.clo.projectname)
+        LMODROID="false"
+    fi
+
+    if [ $LMODROID = "false" ]
+    then
+        local PROJECT=$(echo $REMOTE | sed -e "s#/#_#g")
+        local PFX="LMODroid/"
+    else
+        if [ $LINEAGE = "true" ]
+        then
+            local PFX="LMODroid/"
+            local PROJECT=$(echo $REMOTE | sed -e "s#android_#platform_#g")
+        else
+            local PROJECT=$REMOTE
+        fi
+    fi
+
+    local LMO_USER=$(git config --get review.gerrit.libremobileos.com.username)
+    if [ -z "$LMO_USER" ]
+    then
+        git remote add lmogerrit ssh://gerrit.libremobileos.com:29418/$PFX$PROJECT
+    else
+        git remote add lmogerrit ssh://$LMO_USER@gerrit.libremobileos.com:29418/$PFX$PROJECT
+    fi
+    echo "Remote 'lmogerrit' created"
+}
+
 function ngremote()
 {
     if ! git rev-parse --git-dir &> /dev/null
@@ -170,12 +223,11 @@ function lineageremote()
 
 function mfrebase()
 {
-    pushd $ANDROID_BUILD_TOP/manifest >/dev/null
+    cd $ANDROID_BUILD_TOP/manifest
     git checkout ng-v4-githubmirror
     git reset --hard ng-v4
     git cherry-pick HEAD@{1}
     git checkout ng-v4
-    popd >/dev/null
 }
 
 function ghfork()
@@ -381,6 +433,7 @@ function push() {
     git push "$RH" HEAD:"$BRNCH" $@
     if git show-ref --quiet refs/heads/ng-v4-githubmirror; then
         git push ng ng-v4-githubmirror >/dev/null 2>&1 || git push ng ng-v4-githubmirror -f
+        git branch -D ng-v4-githubmirror
     fi
 }
 
