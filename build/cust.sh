@@ -93,15 +93,15 @@ function lmoremote()
         LMODROID="false"
     fi
 
-    if [ $LMODROID = "false" ]
+    if [ $LINEAGE = "true" ]
     then
-        local PROJECT=$(echo $REMOTE | sed -e "s#/#_#g")
         local PFX="LMODroid/"
+        local PROJECT=$(echo $REMOTE | sed -e "s#android_#platform_#g")
     else
-        if [ $LINEAGE = "true" ]
+       if [ $LMODROID = "false" ]
         then
+            local PROJECT=$(echo $REMOTE | sed -e "s#/#_#g")
             local PFX="LMODroid/"
-            local PROJECT=$(echo $REMOTE | sed -e "s#android_#platform_#g")
         else
             local PROJECT=$REMOTE
         fi
