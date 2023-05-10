@@ -50,7 +50,7 @@ public class NgDashboard extends SettingsPreferenceFragment implements Preferenc
         mGamesSpoof.setChecked(SystemProperties.getBoolean(SYS_GAMES_SPOOF, false));
         mGamesSpoof.setOnPreferenceChangeListener(this);
         mPhotosSpoof = (SwitchPreference) prefScreen.findPreference(KEY_PHOTOS_SPOOF);
-        mPhotosSpoof.setChecked(SystemProperties.getBoolean(SYS_PHOTOS_SPOOF, true));
+        mPhotosSpoof.setChecked(SystemProperties.getBoolean(SYS_PHOTOS_SPOOF, false));
         mPhotosSpoof.setOnPreferenceChangeListener(this);
         mNetFlixSpoof = (SwitchPreference) findPreference(KEY_NETFLIX_SPOOF);
         mNetFlixSpoof.setChecked(SystemProperties.getBoolean(SYS_NETFLIX_SPOOF, false));
