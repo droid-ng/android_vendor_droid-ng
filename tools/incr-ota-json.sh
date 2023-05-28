@@ -11,7 +11,7 @@ function getmeta {
 	get_val "$1" "$OTA_METADATA"
 }
 
-ZIPFULL="droid-ng-$(getprop ro.lmodroid.version).zip"
+ZIPFULL="$(getprop ro.lmodroid.build_name).zip"
 ZIPPATHFULL="$OUT/$ZIPFULL"
 ZIPPATH="$1"
 ZIP="$(basename $ZIPPATH)"
